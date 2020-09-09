@@ -50,6 +50,8 @@ export default {
   ** Nuxt.js modules
   */
   modules: [
+    '@nuxtjs/bulma',
+    '@nuxtjs/font-awesome'
   ],
   /*
   ** Build configuration
