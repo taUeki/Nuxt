@@ -1,34 +1,55 @@
 <template>
-<div class="section">
-  <div class="field">
-    <label class="label">タイトル</label>
-    <div class="control">
-      <input class="input" type="text" placeholder="タイトルを入力">
+  <div class="section">
+    <div class="columns">
+      <div v-for="memo in memos" :key="memo.id" class="column is-4">
+        <div class="card">
+          <div class="card-image is-16by9">
+            <figure class="image">
+              <img src="~/static/dariru.png" />
+            </figure>
+          </div>
+          <div class="card-content">
+            <p class="content title has-text-centered">{{ memo.title }}</p>
+            <!-- <div class="content">
+              {{ memo.body }}
+            </div> -->
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="field">
-    <label class="label">リソースURL</label>
-    <div class="control">
-      <input class="input" type="url" placeholder="リソースURLを入力">
-    </div>
-  </div>
-  <div class="field">
-    <label class="label">記事テキスト</label>
-    <div class="control">
-      <textarea class="textarea" placeholder="記事を入力"></textarea>
-    </div>
-  </div>
-  <div class="field is-grouped">
-    <div class="control">
-      <button class="button is-link">登録</button>
-    </div>
-    <div class="control">
-      <button class="button is-link is-light">キャンセル</button>
-    </div>
-  </div>
-</div>
 </template>
 
 <script>
-export default {}
+import {firebase, db } from '@/plugins/firebase'
+
+export default {
+  data () {
+    return {
+      memos: []
+    }
+  },
+  mounted() {
+    this.featch()
+  },
+  methods: {
+    featch() {
+      let memosRef = db.collection('memos').get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          this.memos.push(doc.data())
+        })
+      })
+      .catch(err => {
+        console.log('Error getting documents', err)
+      })
+    }
+  },
+} 
 </script>
+
+<style>
+.column {
+  display: flex;
+}
+</style>

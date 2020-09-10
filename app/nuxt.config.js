@@ -35,7 +35,7 @@ export default {
   ** https://nuxtjs.org/guide/plugins
   */
   plugins: [
-    '~/plugins/firebase'
+    '@/plugins/firebase'
   ],
   /*
   ** Auto import components
@@ -52,7 +52,8 @@ export default {
   */
   modules: [
     '@nuxtjs/bulma',
-    '@nuxtjs/font-awesome'
+    '@nuxtjs/font-awesome',
+    '@nuxtjs/axios'
   ],
   /*
   ** Build configuration
