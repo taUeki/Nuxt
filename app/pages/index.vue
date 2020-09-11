@@ -1,6 +1,6 @@
 <template>
   <div class="section">
-    <div class="columns">
+    <div class="columns is-multiline">
       <div v-for="memo in memos" :key="memo.id" class="column is-4">
         <div class="card">
           <div class="card-image is-16by9">
