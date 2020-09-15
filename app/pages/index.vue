@@ -3,7 +3,7 @@
     <Navigation />
     <div class="section">
       <div class="columns is-multiline">
-        <div v-for="memo in memos" :key="memo.id" class="column is-4">
+        <div v-for="memo in getMemos" :key="memo.id" class="column is-4">
             <div class="card">
               <div class="card-image is-16by9">
                 <figure class="image">
@@ -23,34 +23,18 @@
 </template>
 
 <script>
-import {firebase, db } from '@/plugins/firebase'
-
+import {mapGetters, mapActions, mapMutations} from "vuex"
 
 export default {
-  data () {
-    return {
-      memos: []
-    }
+  computed: {
+    ...mapGetters(['getMemos']),
   },
   mounted() {
-    this.featch()
+    this.fetchMemos()
   },
   methods: {
-    featch() {
-      let memosRef = db.collection('memos').get()
-      .then(snapshot => {
-        snapshot.forEach(doc => {
-          //これでドキュメント取得できる
-          let memo = doc.data()
-          memo.id = doc.id
-          this.memos.push(memo)
-        })
-      })
-      .catch(err => {
-        console.log('Error getting documents', err)
-      })
-    }
-  },
+    ...mapActions(['fetchMemos'])
+  }
 } 
 </script>
 
