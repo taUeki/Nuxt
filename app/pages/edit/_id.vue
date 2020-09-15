@@ -28,31 +28,15 @@
 </template>
 
 <script>
-import {firebase, db } from '@/plugins/firebase'
-
 export default {
-    data () {
-        return {
-            memo: {
-                title: "",
-                body: ""
-             }
-        }
+    computed: {
+        ...mapGetters(['getMemos']),
     },
     mounted() {
-        this.featchById()
+        this.fetchById(this.$route.params.id)
     },
     methods: {
-        featchById() {
-            let memosRef = db.collection('memos').doc(this.$route.params.id).get()
-            .then(doc => {
-                this.memo.title = doc.data().title
-                this.memo.body = doc.data().body
-            })
-            .catch(err => {
-                console.log('Error getting documents', err)
-            })
-        },  
+        ...mapActions(['fetchById']),
         submit () {
         let dbCards = db.collection('memos').doc(this.$route.params.id)
             .set({
