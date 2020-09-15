@@ -28,5 +28,11 @@ export const actions = {
                 commit('add', memo) 
             })
         })
-    },  
+    },
+    fetchById({commit}, id) {
+        db.collection('memos').doc(this.$route.params.id).get()
+        .then(doc => {
+            commit('setMemos', doc.data())
+        })
+    },    
 }  

@@ -4,7 +4,7 @@
     <div class="columns">
         <div class="column is-8 is-offset-2">
         <figure class="image is-16by9">
-            <img src="@/static/dariru.png" />
+            <img src="~/static/dariru.png" />
         </figure>
         </div>
     </div>
@@ -24,8 +24,6 @@
 
 <script>
 import {firebase, db } from '@/plugins/firebase'
-import Navigation from '@/components/navigation'
-// import { useRouter } from 'nuxt/router'
 
 export default {
   data () {

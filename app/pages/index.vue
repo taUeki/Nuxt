@@ -7,9 +7,11 @@
             <div class="card">
               <div class="card-image is-16by9">
                 <figure class="image">
-                  <n-link to="1v2slSK9UBfWvjrCkpIR">
+                  <router-link 
+                    :to="{ path: `/${memo.id}`}"
+                  >
                     <img src="~/static/dariru.png" />
-                  </n-link>
+                  </router-link>
                 </figure>
               </div>
               <div class="card-content">
